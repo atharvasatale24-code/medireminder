@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* MediReminder - Soft Medical Blue Palette */
+    /* Primary: #2F80ED → OKLCH ~0.56 0.19 253 */
+    /* Background: #EAF3FF → OKLCH ~0.97 0.03 253 */
+
+    --background: 0.97 0.025 253;
+    --foreground: 0.15 0.005 253;
+
+    --card: 1 0 0;
+    --card-foreground: 0.15 0.005 253;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.15 0.005 253;
+
+    --primary: 0.56 0.19 253;
+    --primary-foreground: 1 0 0;
+
+    --secondary: 0.94 0.04 253;
+    --secondary-foreground: 0.56 0.19 253;
+
+    --muted: 0.93 0.02 253;
+    --muted-foreground: 0.55 0.02 253;
+
+    --accent: 0.94 0.04 253;
+    --accent-foreground: 0.56 0.19 253;
+
+    --destructive: 0.56 0.22 27;
+    --destructive-foreground: 1 0 0;
+
+    --success: 0.6 0.18 145;
+    --success-foreground: 1 0 0;
+
+    --warning: 0.72 0.18 68;
+    --warning-foreground: 0.15 0.005 0;
+
+    --border: 0.9 0.03 253;
+    --input: 0.9 0.03 253;
+    --ring: 0.56 0.19 253;
+
+    --chart-1: 0.56 0.19 253;
+    --chart-2: 0.6 0.18 145;
+    --chart-3: 0.72 0.18 68;
+    --chart-4: 0.56 0.22 27;
+    --chart-5: 0.7 0.12 200;
+
+    --sidebar: 1 0 0;
+    --sidebar-foreground: 0.15 0.005 253;
+    --sidebar-primary: 0.56 0.19 253;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.94 0.04 253;
+    --sidebar-accent-foreground: 0.56 0.19 253;
+    --sidebar-border: 0.9 0.03 253;
+    --sidebar-ring: 0.56 0.19 253;
+
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .phone-frame {
+    box-shadow: 0 0 0 12px #1a1a2e, 0 0 0 14px #2d2d4a, 0 32px 64px
+      rgba(0, 0, 0, 0.35);
+    border-radius: 44px;
+  }
+
+  .card-shadow {
+    box-shadow: 0 2px 16px rgba(47, 128, 237, 0.08), 0 1px 4px
+      rgba(0, 0, 0, 0.06);
+  }
+
+  .nav-shadow {
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .btn-glow {
+    box-shadow: 0 4px 20px rgba(47, 128, 237, 0.35);
+  }
+}
