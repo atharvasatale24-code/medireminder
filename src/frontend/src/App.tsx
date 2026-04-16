@@ -1,3 +1,5 @@
+import { getMedicines } from "./medicine";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -418,9 +420,15 @@ function SignupScreen({
 
 function HomeScreen({
   isTaken,
+  medicines,
   onMarkTaken,
   onAddMedicine,
-}: { isTaken: boolean; onMarkTaken: () => void; onAddMedicine: () => void }) {
+}: {
+  isTaken: boolean;
+  medicines: any[];
+  onMarkTaken: () => void;
+  onAddMedicine: () => void;
+}) {
   return (
     <motion.div
       key="home"
@@ -538,25 +546,32 @@ function HomeScreen({
                 <Pill size={20} color="white" strokeWidth={2} />
               </div>
               <div>
-                <p className="text-xl font-bold" style={{ color: "#1A1A1A" }}>
-                  Paracetamol
-                </p>
-                <p
-                  className="text-xs font-medium"
-                  style={{ color: "oklch(var(--muted-foreground))" }}
-                >
-                  500mg · 1 tablet
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock size={15} style={{ color: "oklch(var(--primary))" }} />
-              <span
-                className="text-base font-semibold"
-                style={{ color: "oklch(var(--primary))" }}
-              >
-                10:00 AM
-              </span>
+              {medicines.length > 0 ? (
+  <>
+    <p className="text-xl font-bold" style={{ color: "#1A1A1A" }}>
+      {medicines[0].name}
+    </p>
+
+    <p
+      className="text-xs font-medium"
+      style={{ color: "oklch(var(--muted-foreground))" }}
+    >
+      Status: {medicines[0].status}
+    </p>
+
+    <div className="flex items-center gap-2">
+      <Clock size={15} style={{ color: "oklch(var(--primary))" }} />
+      <span
+        className="text-base font-semibold"
+        style={{ color: "oklch(var(--primary))" }}
+      >
+        {medicines[0].time}
+      </span>
+    </div>
+  </>
+) : (
+  <p>No medicine added</p>
+)}
             </div>
           </div>
           <motion.button
@@ -1015,6 +1030,15 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [medicineName, setMedicineName] = useState("");
   const [medicineTime, setMedicineTime] = useState("10:00");
+  const [medicines, setMedicines] = useState<any[]>([]);
+  
+  useEffect(() => {
+  async function loadData() {
+    const data = await getMedicines();
+    setMedicines(data);
+  }
+  loadData();
+}, []);
 
   const isAppScreen =
     screen === "home" || screen === "history" || screen === "profile";
